@@ -1,0 +1,49 @@
+document.getElementById("transfer-now").addEventListener("click", function (event) {
+    event.preventDefault();
+
+    const amount = getInputValueById("amount3");
+    const pin = getInputValueById("pin3");
+    const account = document.getElementById("account3").value;
+    const mainBalance = geetInnerTextById("main-balance");
+
+    const validBanks = ["Bkash", "Nagad", "Rocket", "Upay"];
+    const selectedBank = document.getElementById("allBank3").value;
+
+    if (!validBanks.includes(selectedBank)) {
+        alert("Please Select a Bank First!");
+        return;
+    } else {
+        // alert("Please Select a Bank");
+        if (account.length === 11) {
+            if (!isNaN(amount) && (amount > 0)) {
+                if (!isNaN(pin)) {
+                    const sub = mainBalance - amount;
+                    setInnerTextByIdAndValue("main-balance", sub);
+                    alert("Money Transfer Successfull");
+
+                    // add to transection history
+                    const container = document.getElementById("transection-container");
+                    const div = document.createElement("div");
+                    div.classList.add("bg-white", "p-4", "m-4", "rounded-2xl");
+                    div.innerHTML = `
+                        <div class="flex gap-6">
+                            <img class="w-12" src="assets/wallet1.png" alt="">
+                            <div>
+                               <h3 class="font-semibold">Money Transfer</h3>
+                               <p>${amount} Taka To ${account}</p>
+                            </div>
+                         </div>
+                    `;
+                    container.appendChild(div);
+
+                } else {
+                    alert("Your PIN is Wrong, Please give the correct PIN");
+                }
+            } else {
+                alert("Enter Your Valid Positive Amount Before");
+            }
+        } else {
+            alert("Enter a Valid Account Number");
+        }
+    }
+});
