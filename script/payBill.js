@@ -16,7 +16,7 @@ document.getElementById("pay-now").addEventListener("click", function (event) {
         if (account.length === 11) {
             if (!isNaN(amount) && (amount > 0)) {
                 if (!isNaN(pin)) {
-                    const sub = mainBalance + amount;
+                    const sub = mainBalance - amount;
                     setInnerTextByIdAndValue("main-balance", sub);
                     alert("Pay Bill Successfull");
 

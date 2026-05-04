@@ -6,7 +6,9 @@ document.getElementById("get-bonus").addEventListener("click", function (event) 
 
     if (coupon.length === 4) {
 
-        const sum = mainBalance + coupon;
+        let ernedBonus = Math.floor(Math.random() * (1000 - 100 + 1)) + 5;
+
+        const sum = mainBalance + ernedBonus;
         setInnerTextByIdAndValue("main-balance", sum);
         alert("You Just Successfully Claimed Your Bonus");
 
@@ -19,7 +21,7 @@ document.getElementById("get-bonus").addEventListener("click", function (event) 
                             <img class="w-12" src="assets/wallet1.png" alt="">
                             <div>
                                <h3 class="font-semibold">Erned Bonus</h3>
-                               <p>${amount} Taka</p>
+                               <p>${ernedBonus} Taka</p>
                             </div>
                          </div>
                     `;
